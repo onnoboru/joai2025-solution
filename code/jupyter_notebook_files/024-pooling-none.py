@@ -1,3 +1,6 @@
+# %% [markdown]
+# # kaggle 実行！
+
 # %%
 import os
 os.environ["XLA_FLAGS"] = "--xla_gpu_cuda_data_dir=/usr/local/cuda"
@@ -147,7 +150,7 @@ class GridMask(DualTransform):
 
 # %%
 class CFG : 
-    exp_name = "022_one_out_100epoch"
+    exp_name = "024_pooling_none"
     random_seed = 42
     
     # model info
@@ -355,8 +358,6 @@ class joaiModel(nn.Module):
         
         # 画像部分 
         self.model = timm.create_model(model_name, pretrained=True, num_classes=0, in_chans=4)
-        self.model.global_pool = nn.Identity()
-        self.gem = GeM()
         self.dropout = nn.Dropout(config.dropout_ratio)
         self.fc_img = nn.Linear(self.model.num_features, 256)
         
@@ -377,8 +378,6 @@ class joaiModel(nn.Module):
         
     def forward(self, x, numerical_features, embedding, attention_mask):
         x = self.model(x)
-        x = self.gem(x)
-        x = x.view(x.size(0), -1)
         x = self.fc_img(x)
         
         numerical_features = self.fc_num(numerical_features)
@@ -670,7 +669,7 @@ def main():
         
         for i, class_name in enumerate(label_to_name.values()):
             print(f"{class_name}: {i}")
-            train[class_name] = oof_preds[:, i]
+            train[class_name] = oof_preds[:, i]*5
             
         train.to_csv(os.path.join(config.output_dir, f"{config.exp_name}_oof.csv"), index=False)
         

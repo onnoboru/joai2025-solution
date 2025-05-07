@@ -1,13 +1,11 @@
 # %% [markdown]
 # # kaggle 実行！
 
-
 # %%
 import os
 os.environ["XLA_FLAGS"] = "--xla_gpu_cuda_data_dir=/usr/local/cuda"
 # または環境変数を完全に無効化
 os.environ["PJRT_DEVICE"] = "CUDA"
-
 
 # %%
 import os
@@ -187,8 +185,8 @@ class CFG :
     train_img_size = 224
     # data_dir = "/kaggle/input/joai-dataset"
     # output_dir = "/kaggle/working/"
-    data_dir = "../dataset/"
-    output_dir = "../outputs/"
+    data_dir = "../dataset"
+    output_dir = "../outputs"
     fold = 5
     
 config = CFG()
