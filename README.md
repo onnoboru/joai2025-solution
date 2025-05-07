@@ -26,7 +26,7 @@
 ## local 環境
 - GPU : RTX4070 Laptop x1
 - 010, 018, 023, a01, a02, 及びその他ファイル作成等で使用
-- 実行時から joai_toolkit を用いた GridMask の呼び出しを行わないように変更しています。
+- 実行時と比較して joai_toolkit を用いた GridMask の呼び出しを行わないように変更しています。
 
 # how to run
 全てのコードにおいて random seed は固定していますが、実行環境等の違いによって 完全に同一の結果が再現されない可能性があります。ご容赦ください。 
@@ -55,8 +55,8 @@ dataset
 ```
 
 ## 注意点
-**以下の (a05_024_anotherseed と 023_fix と 024_fix を除く) 全てのコードは、実際には jupyter notebook 上で実行しましたが、 jupyter notebook と同名の python ファイルに書き出したため、 .py ファイルとして実行できるようになっています。厳密に再現したい場合は、 code/jupyter_notebook_files にあるファイルを、 code ディレクトリ移動させて実行してください。**
-
+- **以下の (a05_024_anotherseed と 023_fix と 024_fix を除く) 全てのコードは、実際には jupyter notebook 上で実行しましたが、 jupyter notebook と同名の python ファイルに書き出したため、 .py ファイルとして実行できるようになっています。厳密に再現したい場合は、 code/jupyter_notebook_files にあるファイルを、 code 直下に移動させて実行してください。**
+- コードは code/ に移動して実行してください。  
 ## csv を fold に分ける
 
 今回は、 leak 防止のために事前に fold 列を付けた csv を書き出す、という方針を採用しました。  
@@ -78,8 +78,6 @@ $ python3 b03_save_roberta_feature.py
 
 ## 10 個のモデルを学習させる
 エラーが出た場合は CFG の data_dir や output_dir を見直してください。本番は a05 を除いて .ipynb で動かしたため、 .py ファイルは一部動かない可能性があります。
-TODO : 022 の実行もと code を firefox から DL してあげる
-TODO : ckpt は残り 022 と 024 なはず
 ```sh
 $ python3 010_film.py
 $ python3 018_film_gem.py
@@ -93,7 +91,7 @@ $ python3 a04_multiclass_gem_anotherseed.py
 $ python3 a05_024_anotherseed.py
 ```
 ## 023 と 024 はコードにバグを埋め込んでいたためそれの修正をかける
-本番でも潜在的なバグを取り除くためにこのようなファイルを実行しました。この 2 つのファイルは .py ファイルで動かしました。
+本番でも test データの確率が実際の 5 倍になっているというバグを取り除くためにこのようなファイルを実行しました。この 2 つのファイルは .py ファイルで動かしました。
 ```sh
 $ python3 023_fix.py
 $ python3 024_fix.py
@@ -116,9 +114,10 @@ $ python3 stacking_110_111_112_113_114.py
 ```
 
 # WandB について
-以下のリンクから実行ログが確認できます。提出ファイルの再現に関係ない実験記録も一部含まれていますがご容赦ください。
+以下のリンクから実行ログが確認できます。提出ファイルの再現に関係ない実験記録も一部含まれていますがご容赦ください。  
 リンク : https://wandb.ai/onnoboru/JOAI
 # checkpoint について 
 全ての checkpoint は以下のリンクから参照できます。いくつかバージョンがある場合は最新のバージョンを参照してください。  
 リンク (google drive) : https://drive.google.com/drive/u/3/folders/1j0ahZNpJvJOBl_Ne52d3jEGUzQWwNuyu  
-リンク (kaggle dataset) : 
+リンク (kaggle dataset) : https://www.kaggle.com/datasets/onnoboru/joai2025-checkpoint
+
