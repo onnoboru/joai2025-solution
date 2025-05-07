@@ -1,6 +1,6 @@
 # JOAI2025 選抜枠 3 位 solution
 - JOAI2025 での最終 sub を構築するのに必要なコードです
-- 解法は提出したスライドを参考にしてください。
+- 解法は提出したスライドを参考にしてください。 JOAI2025_selection_3rd_place_solution.pdf という名前で zip ファイル内にのみ存在しています。
 
 # Directory Layout
 ```
