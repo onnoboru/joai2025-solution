@@ -113,6 +113,8 @@ $ python3 114_oneout_default_pooling.py
 ```sh
 $ python3 stacking_110_111_112_113_114.py
 ```
+最終提出のファイル名は stacking_110_111_112_113_114_submission.csv のようになるはずです。
+
 
 # WandB について
 以下のリンクから実行ログが確認できます。提出ファイルの再現に関係ない実験記録も一部含まれていますがご容赦ください。  
